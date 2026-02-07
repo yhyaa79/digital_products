@@ -32,5 +32,15 @@ class Product(models.Model):
 
 
 class File(models.Model):
-    pass
+    product = models.ForeignKey('Product', verbose_name='product', on_delete=models.CASCADE)
+    title = models.CharField(_('title'), max_length=50)
+    file = models.FileField(_('file'), upload_to='filse/%Y/%m/%d')
+    is_enable = models.BooleanField(_('is enable'), default=True)
+    creted_time = models.DateTimeField(_('creted time'), auto_now_add=True)
+    updated_time = models.DateTimeField(_('updated time'), auto_now=True)
+    
+    class Meta():
+        db_table = 'categories'
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
