@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 class Category(models.Model):
+    parent = models.ForeignKey('self', verbose_name=_('parent'), blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(_('title'), max_length=50)
     description = models.TextField(_('description'), blank=True)
     avatar = models.ImageField(_('avatar'), blank=True, upload_to='categories')
